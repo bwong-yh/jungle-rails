@@ -2,28 +2,28 @@
   <h1>Registration Form</h1>
 
   <section>
-    <label for="" class="form-label">Email</label> 
+    <%= f.label :email %>
     <%= f.text_field :email %>
   </section>
 
   <section class="d-flex justify-content-between">
     <div>
-      <label for="" class="form-label">First Name</label>
+      <%= f.label :first_name %>
       <%= f.text_field :first_name %>
     </div>
     <div>
-      <label for="" class="form-label">Last Name </label>
+      <%= f.label :last_name %>
       <%= f.text_field :last_name %>
     </div>
   </section>
 
   <section>
-    <label for="" class="form-label">Password</label> 
+    <%= f.label :password %> 
     <%= f.password_field :password %>
   </section>
 
   <section>
-    <label for="" class="form-label">Password Confirmation</label> 
+    <%= f.label :password_confirmation %> 
     <%= f.password_field :password_confirmation %>
   </section>
 
