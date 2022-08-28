@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action { flash.clear }
+
   def new
   end
 
@@ -12,7 +14,8 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
     # If user's login doesn't work, send them back to the login form.
-      redirect_to '/login'
+      flash[:alert] = "Invalid email or password."
+      render :new
     end
   end
 

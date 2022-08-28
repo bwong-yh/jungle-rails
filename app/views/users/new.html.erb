@@ -1,5 +1,5 @@
 <%= form_with model: @user, urls: users_path do |f| %>
-  <div class="section--error">
+  <div class="mt-3">
     <% if @user.errors.any? %>
       <div class="alert alert-danger">
         <% @user.errors.full_messages.each do |message| %>
@@ -8,11 +8,9 @@
       </div>
     <% end %>
 
-    <% if flash.any? %>
+    <% if flash[:alert] %>
       <div class="alert alert-danger">
-        <% flash.each do |message| %>
-          <%= message[1] %>
-        <% end %>
+        <%= flash[:alert] %>
       </div>
     <% end %>
   </div>
