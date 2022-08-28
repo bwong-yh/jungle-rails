@@ -1,5 +1,13 @@
-<%= form_for :user, url: '/users' do |f| %>
-  <h1>Registration Form</h1>
+<%= form_with model: @user, urls: users_path do |f| %>
+  <div class="section--error">
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger">
+        <% @user.errors.full_messages.each do |message| %>
+          <div class="div"><%= message %></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
   <section>
     <%= f.label :email %>
