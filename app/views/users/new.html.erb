@@ -1,0 +1,47 @@
+<%= form_with model: @user, urls: users_path do |f| %>
+  <div class="mt-3">
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger">
+        <% @user.errors.full_messages.each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+  </div>
+
+  <section>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </section>
+
+  <section class="d-flex justify-content-between">
+    <div>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+  </section>
+
+  <section>
+    <%= f.label :password %> 
+    <%= f.password_field :password %>
+  </section>
+
+  <section>
+    <%= f.label :password_confirmation %> 
+    <%= f.password_field :password_confirmation %>
+  </section>
+
+  <section>
+    <%= f.submit "Submit" %>
+  </section>
+<% end %>

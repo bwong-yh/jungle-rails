@@ -1,0 +1,9 @@
+  <aside class="text-end mt-3 fs-4">
+    <% if current_user %>
+      <span class="fw-bold text-success">Signed in as</span> <%= current_user.email %> | 
+      <%= link_to "Logout", '/logout', class:"text-decoration-none text-danger" %>
+    <% else %>
+      <%= link_to 'Login', '/login', class:"fw-bold text-success text-decoration-none"%> | 
+      <%= link_to 'Signup', '/signup', class:"btn btn-outline-success fs-4" %>
+    <% end %>
+  </aside>

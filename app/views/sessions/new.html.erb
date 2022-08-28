@@ -1,0 +1,25 @@
+<%= form_tag '/login' do %>
+  <div class="mt-3">
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <div><%= flash[:alert] %></div>
+      </div>
+    <% end %>
+  </div>
+
+   <h1>Login</h1>
+
+  <section>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+  </section>
+
+  <section>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </section>
+
+  <section>
+    <%= submit_tag "Submit" %>
+  </section>
+<% end %>
