@@ -22,5 +22,12 @@ RSpec.describe Product, type: :model do
       @product.valid?
       expect(@product.errors[:price]).to include("can't be blank")
     end
+
+    it "should not create a product if product quantity is missing" do
+      @category = Category.new(name: "testCategory")
+      @product = Product.new(name: "testProduct", price: 99, category: @category)
+      @product.valid?
+      expect(@product.errors[:quantity]).to include("can't be blank")
+    end
   end
 end
