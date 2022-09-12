@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   describe "Validations" do
     # validation test/examples here
-    it "should create a product" do
+    it "should create a product if all validations pass" do
       @category = Category.new(name: "testCategory")
       @product = Product.new(name: "testProduct", price: 99, quantity: 10, category: @category)
       expect(@product.valid?).to be(true)
