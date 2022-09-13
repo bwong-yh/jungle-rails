@@ -51,4 +51,62 @@ RSpec.describe User, type: :model do
       expect(@user.errors[:password_confirmation]).to include("doesn\'t match Password")
     end
   end
+
+  describe '.authenticate_with_credentials' do
+    it 'should not return nil with if email and password matched' do
+      user = User.new(
+        first_name: 'John',
+        last_name: 'Smith',
+        email: 'johnsmith@email.com',
+        password: 'test1234',
+        password_confirmation: 'test1234'
+      )
+      user.save
+
+      user = User.authenticate_with_credentials('johnsmith@email.com', 'test1234')
+      expect(user).not_to be(nil)
+    end
+
+    it 'should return nil if email and password do not match' do
+      user = User.new(
+        first_name: 'John',
+        last_name: 'Smith',
+        email: 'johnsmith@email.com',
+        password: 'test1234',
+        password_confirmation: 'test1234'
+      )
+      user.save
+
+      user = User.authenticate_with_credentials('johnsmith@email.com', 'test4321')
+      expect(user).to be(nil)
+    end
+
+    it 'should not return nil even if email contains spaces at the beginning and end' do
+      user = User.new(
+        first_name: 'John',
+        last_name: 'Smith',
+        email: 'johnsmith@email.com',
+        password: 'test1234',
+        password_confirmation: 'test1234'
+      )
+      user.save
+
+      user = User.authenticate_with_credentials('   johnsmith@email.com  ', 'test4321')
+      expect(user).to be(nil)
+    end
+
+    it 'should not return nil with different letter case' do
+      user = User.new(
+        first_name: 'John',
+        last_name: 'Smith',
+        email: 'johnsmith@email.com',
+        password: 'test1234',
+        password_confirmation: 'test1234'
+      )
+      user.save
+
+      user = User.authenticate_with_credentials('joHNsmiTH@Email.COM', 'test4321')
+      expect(user).to be(nil)
+    end
+  end
 end
