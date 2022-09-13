@@ -8,11 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    @duplicate_email = User.all.find_index do |u|
-      u.email.downcase == @user.email.downcase
-    end
-
-    if @duplicate_email != nil
+    if User.all.find { |u| u.email.downcase == @user.email.downcase }
       flash[:alert] = "Email has already been taken"
       render :new
     elsif @user.save
