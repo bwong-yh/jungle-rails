@@ -9,11 +9,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     @duplicate_email = User.all.find_index do |u|
-      u.email == @user.email
+      u.email.downcase == @user.email.downcase
     end
 
     if @duplicate_email != nil
-      flash[:alert] = "Email already registered."
+      flash[:alert] = "Email has already been taken"
       render :new
     elsif @user.save
       session[:user_id] = @user.id
