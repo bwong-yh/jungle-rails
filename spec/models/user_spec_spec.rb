@@ -39,6 +39,12 @@ RSpec.describe User, type: :model do
       expect(@user.errors[:password]).to include("can't be blank")
     end
 
+    it "should not create a user if password is too short (less than 6 characters)" do
+      @user = User.new(first_name: "John", last_name: "Smith", email: "johnsmith@email.com", password: "1234", password_confirmation: "1234")
+      @user.valid?
+      expect(@user.errors[:password]).to include("is too short (minimum is 6 characters)")
+    end
+
     it "should not create a user if password confirmation does not match" do
       @user = User.new(first_name: "John", last_name: "Smith", email: "johnsmith@email.com", password: "test1234", password_confirmation: "test4321")
       @user.valid?
